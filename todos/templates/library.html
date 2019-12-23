@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>todos App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:lightcyan;">
+<nav class="navbar navbar-light" style="background-color:black;">
+    <a href="{% url 'index' %}"  class="navbar-link btn-lg" style="background-color:aqua;color:black;">Todo App</a>
+<a href="{% url 'admin:index' %}" class = 'navbar-link btn-lg' style="background-color:aqua;color:black;">Admin</a>
+    <a href="{% url 'create' %}" class="navbar-link btn-lg" style="background-color:aqua;color:black;">Create todos</a>
+</nav>
+<br>
+{% block content %}
+<div class="card-columns">
+    {% for todo in todos %}
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ todo.title }}</h5>
+    <p class="card-text">{{ todo.description }}</p>
+   <div class="card-footer bg-transparent border-dark">
+   <p class="card-title">{{todo.completed}}</p>
+       <a href="update/{{todo.id}}" class="btn btn-warning" id = '{{todo.id}}'>edit</a>
+       <a href="delete/{{todo.id}}" class="btn btn-danger" id = '{{todo.id}}'>delete</a>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
+</body>
